@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Foods</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <h1>新規登録</h1>
+    <%= form_with model: @record, local: true,  url:{ controller: "users", action: "create" }, local: true do |form| %>
+      <% @record.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+      <div>
+        <%= form.label :dish %><br>
+        <%= form.text_field :dish %>
+      </div>
+      <div>
+        <%= form.label :calorie %><br>
+        <%= form.text_field :calorie %>
+      </div>
+      <div>
+        <%= form.submit %>
+      </div>
+    <% end %>
+      
+  </body>
+</html>

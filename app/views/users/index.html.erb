@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>calorie calculater</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "index_style", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <h1 class = "webtitle">calorie calculater</h1>
+      </div>
+    </header>
+
+    <div class = "container">
+      <div>
+        <h3>今日の目標カロリー(kcal):<h3>
+        <input class = "target_calories" type="text">
+      </div>
+    
+      <div>
+        <h3>今日の残り摂取カロリー(kcal):<%  %></h3>
+      </div>
+    
+      <div class = "main_contents">
+        <%= link_to "新規登録", new_user_path %>
+
+        <h3>今日の記録</h3>
+        <% @record.each do |record| %>
+          <%= record.dish %>
+          <%= record.calorie %>
+          <%= link_to "更新", edit_user_path(record) %>
+          <%= link_to "詳細", user_path(record) %><br>
+        <% end %>
+      </div>
+    </div>
+
+    <div class = "footer">
+      
+    </div>
+  </body>
+</html>

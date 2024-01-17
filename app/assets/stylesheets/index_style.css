@@ -1,0 +1,17 @@
+header {
+    background-color: aqua;
+}
+
+.container{
+    width: 300px;
+    margin: 0 auto;
+}
+
+.target_calories{
+    margin-left: 60px;
+}
+
+.main_contents{
+    text-align: center;
+    margin-top: 100px;
+}
