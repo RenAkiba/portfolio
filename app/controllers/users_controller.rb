@@ -1,17 +1,24 @@
 class UsersController < ApplicationController
     def index
         @record = Record.all
+        
+        @calorie_sum = 0
+        @target
+
+        @record.each do |r|
+            @calorie_sum += r.calorie.to_i
+        end
+
+        #@remaining = @target.t_cal - @calorie_sum
     end
 
-      def show
+    def show
         @record = Record.find_by(id: params[:id])
         if @record.nil?
             flash[:danger] = "詳細が見つかりませんでした"
             redirect_to users_path
         end
     end
-
-
 
     def new
         @record = Record.new

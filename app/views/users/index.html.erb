@@ -12,21 +12,30 @@
 
   <body>
     <header>
-      <div>
-        <h1 class = "webtitle">calorie calculater</h1>
-      </div>
+      calorie calculater
     </header>
 
     <div class = "container">
-      <div>
-        <h3>今日の目標カロリー(kcal):<h3>
-        <input class = "target_calories" type="text">
-      </div>
-    
-      <div>
-        <h3>今日の残り摂取カロリー(kcal):<%  %></h3>
-      </div>
-    
+      <div class = "top-contents">
+        <h3>今日の目標カロリー(kcal):</h3>
+        <input type = "number" id = "target">
+        <button onclick = "calc()">更新</button>
+
+        <h3>今日の残り摂取カロリー(kcal):</h3>
+        <p id = "result"></p>
+
+        <script>>
+          function calc(){
+            var target = parseFloat(document.getElementeById('target').value);
+
+            var result = target - <%= @calorie_sum %>;
+
+            document.getElementeById('result').innnerText = result;
+            alert(result);
+          }
+        </script>
+      </div> <!--top_contents-->
+
       <div class = "main_contents">
         <%= link_to "新規登録", new_user_path %>
 
@@ -37,11 +46,10 @@
           <%= link_to "更新", edit_user_path(record) %>
           <%= link_to "詳細", user_path(record) %><br>
         <% end %>
-      </div>
+      </div> <!--main_contents-->
     </div>
+    
+    <footer></footer>
 
-    <div class = "footer">
-      
-    </div>
   </body>
 </html>
