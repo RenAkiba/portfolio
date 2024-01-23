@@ -12,26 +12,42 @@
 
   <body>
     <header>
-      calorie calculater
+      <div class = "header-logo">
+        calorie calculater
+      </div>
     </header>
 
     <div class = "container">
       <div class = "top-contents">
         <h3>今日の目標カロリー(kcal):</h3>
-        <input type = "number" id = "target">
-        <button onclick = "calc()">更新</button>
+        <!--
+        <%= form_with url: users_path, method: :post do |form| %>
+          <input type="text" name = "target">
+          <input type="submit">
+        <% end %>
+        --> <!--form_with は createアクションに飛ぶ-->
+        <form>
+          <input type="text" id = "target">
+          <button type="button" onclick="getvalue()">更新</button> <!-- type="submit"フォームの送信 type="button"フォームの送信をしない-->
+        </form>
 
         <h3>今日の残り摂取カロリー(kcal):</h3>
-        <p id = "result"></p>
+        <p id = "remaining_output"></p>
 
-        <script>>
-          function calc(){
-            var target = parseFloat(document.getElementeById('target').value);
+        <script>
+          document.getElementById('remaining_output').innerText = 'none.';
 
-            var result = target - <%= @calorie_sum %>;
+          function getvalue(){
+            var target = document.getElementById('target').value;
+            
+            var remaining = target - '<%= @calorie_sum %>';
 
-            document.getElementeById('result').innnerText = result;
-            alert(result);
+            if(target == null){
+              document.getElementById('remaining_output').innerText = 'none.';
+            }
+            else{
+              document.getElementById('remaining_output').innerText = remaining;
+            }
           }
         </script>
       </div> <!--top_contents-->

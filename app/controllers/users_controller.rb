@@ -1,15 +1,12 @@
 class UsersController < ApplicationController
     def index
         @record = Record.all
-        
         @calorie_sum = 0
         @target
 
         @record.each do |r|
             @calorie_sum += r.calorie.to_i
         end
-
-        #@remaining = @target.t_cal - @calorie_sum
     end
 
     def show
@@ -24,6 +21,7 @@ class UsersController < ApplicationController
         @record = Record.new
     end
 
+    
     def create
         @record = Record.new(record_params)
         if @record.save
@@ -34,11 +32,13 @@ class UsersController < ApplicationController
             render :new
         end
     end
+    
 
     def edit
         @record = Record.find_by(id: [params[:id]])
     end
 
+    
     def update
         @record = Record.find_by(id: [params[:id]])
         if @record.update(record_params)
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
             render :edit
         end
     end
+    
 
     def destroy
         @record = Record.find_by(id: [params[:id]])
@@ -63,4 +64,5 @@ class UsersController < ApplicationController
     def record_params
         params.require(:record).permit(:dish, :calorie)
     end
+    
 end
