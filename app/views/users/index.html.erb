@@ -19,20 +19,21 @@
 
     <div class = "container">
       <div class = "top-contents">
-        <h3>今日の目標カロリー(kcal):</h3>
+        <h2>今日の目標カロリー(kcal):</h2>
         <!--
         <%= form_with url: users_path, method: :post do |form| %>
           <input type="text" name = "target">
           <input type="submit">
         <% end %>
         --> <!--form_with は createアクションに飛ぶ-->
-        <form>
-          <input type="text" id = "target">
+        <form class ="target_inputform">
+          <input type="text" id = "target"><span class="input_kcal_str">kcal</span>
           <button type="button" onclick="getvalue()">更新</button> <!-- type="submit"フォームの送信 type="button"フォームの送信をしない-->
         </form>
 
-        <h3>今日の残り摂取カロリー(kcal):</h3>
-        <p id = "remaining_output"></p>
+        <h2>今日の残り摂取カロリー:</h2>
+        <p id = "goal_achievement" class ="goal_achievement"></p>
+        <p id = "remaining_output" class ="remaining_output"></p>
 
         <script>
           document.getElementById('remaining_output').innerText = 'none.';
@@ -42,26 +43,38 @@
             
             var remaining = target - '<%= @calorie_sum %>';
 
-            if(target == null){
+            if(target == ""){
               document.getElementById('remaining_output').innerText = 'none.';
             }
-            else{
-              document.getElementById('remaining_output').innerText = remaining;
+            else if(remaining > 0){
+              document.getElementById('remaining_output').innerText = remaining + " kcal";
+            }
+            else if(remaining == 0){
+              document.getElementById('goal_achievement').innerText = "目標達成！";
+              document.getElementById('remaining_output').innerText = remaining + " kcal";
+            }
+            else if(remaining < 0){
+              document.getElementById('goal_achievement').innerText = "目標達成！";
+              document.getElementById('remaining_output').innerText = "over " + Math.abs(remaining) + " kcal";
             }
           }
         </script>
       </div> <!--top_contents-->
 
       <div class = "main_contents">
-        <%= link_to "新規登録", new_user_path %>
+        <div class = "record_output">
+          <h3>今日の記録</h3>
+          <% @record.each do |record| %>
+            <%= record.dish %>
+            <%= record.calorie %>
+            <%= link_to "更新", edit_user_path(record) %>
+            <%= link_to "詳細", user_path(record) %><br>
+          <% end %>
+        </div>
 
-        <h3>今日の記録</h3>
-        <% @record.each do |record| %>
-          <%= record.dish %>
-          <%= record.calorie %>
-          <%= link_to "更新", edit_user_path(record) %>
-          <%= link_to "詳細", user_path(record) %><br>
-        <% end %>
+        <div class = "new_link">
+          <%= link_to "新規登録", new_user_path %>
+        </div>
       </div> <!--main_contents-->
     </div>
     

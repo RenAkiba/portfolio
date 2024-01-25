@@ -20,12 +20,13 @@ body {
 }
 
 .top-content{
+    
     padding-top: 50px;
     margin-top: 50px;
 }
 
 .container{
-    width: 300px;
+    width: 500px;
     margin: 120px auto; /* margin 上下 左右autoで中央寄せ*/
     
 }
@@ -37,4 +38,33 @@ body {
 .main_contents{
     text-align: center;
     margin-top: 100px;
+}
+
+.remaining_output{
+    margin-top: 0px;
+    font-size: 50px;
+    text-align: center;
+}
+
+.goal_achievement{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 50px;
+    text-align: center;
+}
+
+.target_inputform{
+    text-align: center;
+}
+
+.input_kcal_str{
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.new_link{
+    border-top: solid;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-color: #EEEEEE;
 }
