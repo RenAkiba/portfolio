@@ -12,26 +12,53 @@
   </head>
 
   <body>
-    <h1>更新</h1>
-    <%= form_with model: @record, local: true,  url:{ controller: "users", action: "update" }, local: true do |form| %>
-      <% @record.errors.full_messages.each do |message| %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= message %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <header>
+      <div class = "header-logo">
+        calorie calculater
+      </div>
+    </header>
+
+    <div class ="edit_conteiner container">
+      <h1 class ="edit_main_content">更新</h1>
+      <%= form_with model: @record, local: true,  url:{ controller: "users", action: "update" }, local: true do |form| %>
+        <% @record.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= message %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <div>
+          <%= form.label :"料理名" %><br>
+          <%= form.text_field :dish %>
+        </div>
+        <div>
+          <%= form.label :"カロリー(kcal)" %><br>
+          <%= form.text_field :calorie %>
+        </div>
+        <div>
+          <%= form.submit :"更新する"%>
         </div>
       <% end %>
-      <div>
-        <%= form.label :dish %><br>
-        <%= form.text_field :dish %>
+    </div>
+    
+    <footer>
+      <div class="footer-contents">
+        <a href="https://github.com/RenAkiba">秋庭蓮のGitHub</a><br>
+        <a href="https://qiita.com/RenAkiba">秋庭蓮のQiita</a>
       </div>
-      <div>
-        <%= form.label :calorie %><br>
-        <%= form.text_area :calorie %>
-      </div>
-      <div>
-        <%= form.submit %>
-      </div>
-    <% end %>
+    </footer>
+
+    <style>
+      footer{
+        position: fixed;
+        top: 700px;
+        width: 100%;
+      }
+
+      .edit_container{
+        margin: 0 auto;
+      }
       
+    </style>
   </body>
 </html>

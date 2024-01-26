@@ -1,4 +1,62 @@
+
 <%= @record.dish %>
 <%= @record.calorie %>
 
 <%= button_to 'Delete', user_path(@record), :method => :delete %><br>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>calorie calculater</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <div class = "header-logo">
+        calorie calculater
+      </div>
+    </header>
+
+    <div class ="show_conteiner container">
+      <h1 class ="show_main_content">詳細</h1>
+      <%= @record.dish %>
+      <%= @record.calorie %>kcal
+
+      <div class="delete_button">
+        <%= button_to 'この内容を消去する',  user_path(@record), :method => :delete %>
+      </div>
+      
+    </div>
+      
+
+    <footer>
+      <div class="footer-contents">
+        <a href="https://github.com/RenAkiba">秋庭蓮のGitHub</a><br>
+        <a href="https://qiita.com/RenAkiba">秋庭蓮のQiita</a>
+      </div>
+    </footer>
+
+    <style>
+      footer{
+        position: fixed;
+        top: 700px;
+        width: 100%;
+      }
+
+      .show_container{
+        margin: 0 auto;
+      }
+      
+      .delete_button{
+        margin-top: 20px;
+      }
+    </style>
+  </body>
+</html>
