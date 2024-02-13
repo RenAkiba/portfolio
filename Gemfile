@@ -74,3 +74,6 @@ gem "importmap-rails" #ESMとimportmapを使用して、トランスパイルや
 gem "turbo-rails" #JavaScriptを一切記述することなく、シングルページのWebアプリケーションのようなスピードを実現
 
 gem "stimulus-rails" #あなたがすでに持っているHTMLのための控えめなJavaScriptフレームワーク
+
+gem 'devise'
+

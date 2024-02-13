@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_17_201022) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_13_091626) do
+  create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "endusers", force: :cascade do |t|
+    t.string "handle_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_endusers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_endusers_on_reset_password_token", unique: true
+  end
+
   create_table "records", force: :cascade do |t|
     t.string "dish", null: false
     t.integer "calorie", null: false
